@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>压岁钱问卷 😏</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #fff9e6;
+    }
+    h1 {
+      color: #ff6f61;
+    }
+    .question {
+      margin: 30px 0;
+      font-size: 18px;
+    }
+    input[type="number"] {
+      padding: 8px;
+      font-size: 16px;
+      width: 120px;
+      margin: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #agreeBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #disagreeBtn {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+      transition: left 0.3s, top 0.3s; /* 平滑移动 */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>money</h1>
+
+  <div class="question">
+    <p>你愿意给我多少钱？</p>
+    <input type="number" id="money" placeholder="比如5" value="5">
+  </div>
+
+  <button class="btn" id="agreeBtn" onclick="alert('太感谢啦！💰')">同意</button>
+  <button class="btn" id="disagreeBtn">不同意</button>
+
+  <script>
+    const disagreeBtn = document.getElementById('disagreeBtn');
+    const body = document.body;
+
+    // 每次鼠标靠近“不同意”按钮，它就逃跑！
+    disagreeBtn.addEventListener('mouseover', () => {
+      // 获取窗口尺寸
+      const maxX = window.innerWidth - disagreeBtn.offsetWidth;
+      const maxY = window.innerHeight - disagreeBtn.offsetHeight;
+
+      // 随机新位置（确保不超出屏幕）
+      const newX = Math.floor(Math.random() * maxX);
+      const newY = Math.floor(Math.random() * maxY);
+
+      disagreeBtn.style.left = newX + 'px';
+      disagreeBtn.style.top = newY + 'px';
+    });
+
+    // 如果真的点到了（极小概率），也弹个消息
+    disagreeBtn.addEventListener('click', () => {
+      alert('哼！你居然点到了……但我不信你忍心不给压岁钱！😤');
+    });
+  </script>
+
+</body>
+</html>
